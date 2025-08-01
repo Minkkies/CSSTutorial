@@ -1,7 +1,6 @@
 # Reference From
 Document from: [Doc](https://www.w3schools.com/CSS/default.asp)<br>
 Document from: [Mikelopster](https://youtu.be/KCYxFXIAn_4?si=SOL-E_LZ-FCaFnKX)<br>
-Document from: My section
 
 <hr>
 
