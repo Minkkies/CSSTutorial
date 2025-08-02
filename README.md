@@ -1,1 +1,1 @@
-## You can read CSS Tutorial in CSSNote folder :)
+## You can read CSS Tutorial in CSSNote file :)
