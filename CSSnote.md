@@ -116,7 +116,7 @@ margin, background-color
         }
         ```
 
-## 2. ```<div>``` vs ```<span>```
+# 2. ```<div>``` vs ```<span>```
 * ```<div>``` จะขึ้นบรรทัดใหม่ นิยมใช้เป็นเหมือนกล่องไว้ครบเพื่อแต่ง style
 * ```<span>``` จะไม่ขึ้นบรรทัดใหม่ ส่วนตัวเอาไว้ใช้คู่กับ ```<p>``` การณีอยากแต่งแค่บางส่วนของประโยค
     **ตัวอย่าง**
@@ -145,7 +145,7 @@ margin: 10px   5px;
 * fixed -> ตำแหน่งจะไม่เปลี่นแม้ scroll
 * sticky -> เหมือน fixed แต่จะตาม scroll เฉพาะใน container ของมัน
 
-## 5. เปรียบเทียบขนาด font
+# 5. เปรียบเทียบขนาด font
 
 | HTML Tag | ขนาด (em/rem) | ขนาด (px) โดยประมาณ |
 | -------- | ------------- | ------------------- |
@@ -156,7 +156,7 @@ margin: 10px   5px;
 | `<h5>`   | 0.83rem       | \~13.28px           |
 | `<h6>`   | 0.67rem       | \~10.72px           |
 
-## 6. หน่วยในในโลก CSS
+# 6. หน่วยในในโลก CSS
     * % -> % ของกล่อง(parent)
     * vw(width), vh(height) -> ขนาดเป็นไปตามหน้าจอ
     * em -> ขาดเป็น x เท่าของแม่(สมมุติแม่ = 12px) เช่น 2em = 12*2 = 24px
@@ -194,12 +194,16 @@ margin: 10px   5px;
 | vw |ความกว้างหน้าจอ|ทำองค์ประกอบเต็มจอแนวนอน|
 
 
-
-
-
-
-## 7. คำสัง css ที่ใช้ในการจัดของ
+# 7. คำสั่ง css ที่ใช้ในการจัดของ
 เกมฝึกความเข้าใจ [flexboxfroggy](https://flexboxfroggy.com/#th)
+
+1. display: flex; - ใช้กับ container เพื่อให้ลูกภายใน container ถูกจัดเรียงโดยใช้ Flexbox
+2. flex-direction - กำหนดทิศทางของการจัดเรียง (แนวนอนหรือแนวตั้ง)
+3. justify-content - ใช้เพื่อจัดการการกระจายพื้นที่ว่างในแนวนอน
+4. align-items - ใช้เพื่อจัดการการจัดเรียงองค์ประกอบในแนวตั้ง
+5. flex-wrap - กำหนดว่าองค์ประกอบจะพับกลับหรือไม่เมื่อมีพื้นที่ไม่พอ
+6. align-self - ใช้เพื่อจัดเรียงองค์ประกอบตัวหนึ่งโดยเฉพาะในแนวตั้ง
+7. flex - ใช้เพื่อกำหนดความยืดหยุ่นขององค์ประกอบภายใน container <br>
 
 | คำสั่ง CSS               | ใช้กับอะไร      | ทำหน้าที่อะไร                                                |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
@@ -211,6 +215,10 @@ margin: 10px   5px;
 | └ `space-between`        |                 | กระจายเต็มพื้นที่ มีช่องว่างระหว่าง แต่ไม่มีตรงขอบ|
 | └ `space-around`         |                 | กระจาย มีช่องว่างรอบ ๆ ทุกด้าน     |
 | └ `space-evenly`         |                 | ช่องว่างระหว่างเท่ากันทุกส่วน  |
+| └ `flex-grow`            |                 |กำหนดอัตราส่วนของการขยายขนาดองค์ประกอบเมื่อมีพื้นที่ว่างเหลือ|
+| └ `flex-shrink`          |                 |กาหนดอัตราส่วนของการหดตัวขององค์ประกอบเมื่อมีพื้นที่ไม่พอ|
+| └ `flex-basis`           |                 |กาหนดขนาดพื้นฐานขององค์ประกอบก่อนที่จะเริ่มการขยายหรือหดตัว|
+| └ `
 | └ `align-items`            | container (แม่) | จัดตำแหน่ง **แนวตั้ง** ของลูก (ตามแกนขวาง)        |
 | └ `flex-start`           |               |ชิดบน   |
 | └ `center`               |                 | อยู่กลางแนวตั้ง   |
@@ -230,12 +238,30 @@ margin: 10px   5px;
 | └ `wrap`                   |                | items ที่เกินจะพับลงไปบรรทัดใหม่|
 | └ `wrap-reverse`           |                | items ที่เกินจะพับลงไปบรรทัดใหม่ และเรียงกลับด้าน|
 | └ `flex-flow`              | container (แม่) | เป็นคำสั่งย่อของ flex-direction และ flex-wrap|
-|              หลังจากบรรทัดนี้จะเป็นคำสั่งของ grid items        |
+
+## คำสั่งของ grid items
+
+1. Grid Container: การกาหนดให้คอนเทนเนอร์เป็นกริดด้วย display: grid ซึ่งจะทาให้คอนเทนเนอร์และองค์ประกอบภายในสามารถใช้งานคุณสมบัติของกริดได้
+2. Grid Items: คือองค์ประกอบที่อยู่ภายในกริด ซึ่งจะถูกจัดวางตามกริดที่กาหนด
+3. Grid Lines: เป็นเส้นที่ใช้ในการแบ่งแถวและคอลัมน์ในกริด
+4. Grid Tracks: ช่องระหว่าง grid lines ซึ่งจะเป็นแถวหรือคอลัมน์
+5. Grid Areas: การรวมพื้นที่หลายๆ ช่องให้เป็นพื้นที่เดียว
+
+| คำสั่ง CSS               | ใช้กับอะไร      | ทำหน้าที่อะไร                                                |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| └ `display: grid;`         | container (แม่) | กำหนดให้ใช้ grid |
+| └ `grid-template-columns`| |repeat(3, 1fr) กาหนดให้มี 3 คอลัมน์ที่มีความกว้างเท่ากัน|
+| └ `grid-template-rows`||auto กาหนดให้แถวมีความสูงอัตโนมัติ|
+| └ `gap`| |กำหนดระยะห่างระหว่างองค์ประกอบในกริด|
 | └ `grid-column-start`      | ลูก (เฉพาะตัว)   | กำหนดค่าเริ่มต้นของ grid items |
 | └ `grid-column-end`        | ลูก (เฉพาะตัว)   | กำหนดค่าสุดท้ายของ grid items |
+| └ `grid-template-areas`| |กาหนดตาแหน่งของแต่ละองค์ประกอบในกริด"main"|
 
+* white-space: pre-wrap	ห่อบรรทัดให้อัตโนมัติ
+* overflow-x: auto	ให้เลื่อนแนวนอนได้เมื่อจำเป็น
+* max-width: 100%	จำกัดไม่ให้ล้นหน้าจอ
 
-## 8.css layout
+# 8.css layout
 | เทคนิค Layout    | คำสั่งหลัก                                         | ใช้ทำอะไร                                | จุดเด่น                              | ข้อควรระวัง                             |
 | ---------------- | -------------------------------------------------- | ---------------------------------------- | ------------------------------------ | --------------------------------------- |
 | **Flexbox**      | `display: flex;`                                   | จัดเรียงแนวแถว/แนวคอลัมน์                | ง่าย, ยืดหยุ่น, เหมาะกับแนวเดียว     | ไม่เหมาะกับเลย์เอาต์หลายแถว/ซับซ้อน     |
@@ -249,7 +275,142 @@ margin: 10px   5px;
 | **Inline-Block** | `display: inline-block;`                           | เรียงในแนวนอนเหมือน inline แต่จัดขนาดได้ | ใช้ง่าย, ไม่ใช้ float                | ช่องว่าง (white space) ระหว่างบล็อก     |
 | **Multi-Column** | `column-count`, `column-gap`                       | แบ่งคอลัมน์อัตโนมัติในเนื้อหา            | เหมาะกับบทความ/ข้อความยาว            | ควบคุมขนาดและเนื้อหายากกว่าตาราง        |
 
-## css เพิ่มเติม
+# Pseudo-class และ Pseudo-element
+**Pseudo-class** ใช้ในการเลือกองค์ประกอบตามสถานะต่างๆ เช่น เมื่อผู้ใช้โต้ตอบกับองค์ประกอบ (คลิก, วางเมาส์, เป็นต้น)
+* :hover ใช้สาหรับกำหนดสไตล์เมื่อผู้ใช้เอาเมาส์ไปวางไว้บนองค์ประกอบ
+* :active คือการ Selector เพิ่ม style ไปยังตัวที่กำลังคลิกอยู่
+* :focus ใช้สาหรับกำหนดสไตล์เมื่อองค์ประกอบได้รับการโฟกัส (เช่น เมื่อคลิกที่กล่องข้อความ)
+* :nth-child(): ใช้เพื่อเลือกองค์ประกอบที่เป็นลูกของพาเรนต์ในตาแหน่งที่ระบุ
+
+**Pseudo-element** (::before, ::after) ใช้ในการเพิ่มเนื้อหาหรือสไตล์ที่ไม่อยู่ใน HTML แต่สามารถเพิ่มได้ใน CSS
+* ::first-letter CSS Selector เลือกไปยังตัวอักษรตัวแรกของตัวนั้
+* ::before ใช้ในการเพิ่มเนื้อหาก่อนเนื้อหาหลักขององค์ประกอบ
+* ::after ใช้ในการเพิ่มเนื้อหาหลังเนื้อหาหลักขององค์ประกอบ
+
+# Media Queries และ Responsive Design
+Media Queries (ใช้คาสั่ง @media) คือคุณสมบัติใน CSS ที่ช่วยให้สามารถกาหนดสไตล์ที่แตกต่างกันตามลักษณะของอุปกรณ์ที่กาลังแสดงผลเว็บไซต์
+
+Responsive Design คือการออกแบบเว็บไซต์ที่สามารถปรับรูปแบบให้เหมาะสมกับขนาดของหน้าจออุปกรณ์ที่แตกต่างกัน
+
+ใช้ @media screen and (orientation: landscape) เพื่อปรับสไตล์เมื่อหน้าจออยู่ในโหมด landscape (แนวนอน) และใช้ @media screen and (orientation: portrait) สาหรับโหมด portrait (แนวตั้ง)
+
+### 1. Viewports (breakpoint) - media query
+Viewports คือสิ่งที่ใช้ใน responsive design เพื่อเป็นการกำหนดขอบเขตของการใช้ CSS ในแต่ละขนาดหน้าจอ ปกติแล้วจะมี 2 เคสคือ:
+* max-width: n px คือการกำหนดว่า จากหน้าจอขนาดไม่เกิน n pixel จะใช้ css ตัวนี้แทน
+* min-width: n px คือการกำหนดว่า จากหน้าจอขนาดไม่น้อยกว่า n pixel จะใช้ css ตัวนี้แทน
+
+### 2. Fluid Layouts (flex) and Flexible Grid Systems (grid)
+* Flex ใช้สำหรับแบ่ง column ซ้ายขวา และให้เรียง column ใหม่เป็น column เดียวตอนเล็กลง (ในกรณีที่จอเล็ก) = ใช้สำหรับ handle จำนวน column ตามขนาดหน้าจอ
+* Grid ใช้สำหรับแบ่ง row, column และให้เรียงเป็น row, column ใหม่ตามขนาดหน้าจอที่เล็กลง = ใช้สำหรับ handle พวก grid ที่ต้องการ handle ทั้ง column และ row ทั้ง grid ไปพร้อมๆกัน
+
+## CSS selector เพิ่มเติม
+Class ใน parent (.container .item)
+* เรามี div class = container อยู่ และ มีลูก (อยู่ใน div container) class = item และต้องการแต่ง item ใน container ให้มีตัวอักษรสีน้ำเงิน และ padding 10px<br>
+![alt text](https://docs.mikelopster.dev/assets/images/intro-1-172aa31e01d2bf844b981c9bbac41d6f.png)<br>
+
+````
+<head>
+    <style>
+        .container .item {
+            padding: 10px;
+            color: blue;
+        }
+    </style>
+  </head>
+  <body>
+        <div class="container">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+        <div class="item">Item out of scope</div>
+  </body>
+  ````
+
+
+Class ติดกัน (.container.item)
+* ปกติ มักจะใช้กับกรณีอยากสร้าง base class แล้วเพิ่ม class style เพิ่มเติมไป
+* ตัวอย่าง สร้าง button ขึ้นมาเป็น base class และเพิ่ม active, warning, danger ให้แยกสีปุ่มออกจากกัน
+![alt text](https://docs.mikelopster.dev/assets/images/intro-2-3e519af867675918aba854db73d91bf8.png)
+
+````
+ <head>
+    <style>
+        .button {
+            padding: 10px;
+            border: 0;
+            border-radius: 5px;
+            background-color: gray;
+        }
+        .button.active {
+            background-color: green;
+        }
+        .button.warning {
+            background-color: orange;
+        }
+        .button.danger {
+            background-color: red;
+        }
+    </style>
+  </head>
+  <body>
+        <button class="button">ปุ่มปกติ</button>
+        <button class="button active">ปุ่มทำงาน</button>
+        <button class="button warning">ปุ่มเตือน</button>
+        <button class="button danger">ปุ่มอันตราย</button>
+  </body>
+````
+
+Class ใน parent แบบติดกัน (.container > .item)
+* CSS Selector ที่จะหยิบเฉพาะลูกแค่ level เดียวมา กรณีอยากให้ style มีผลกับลูกที่ติดกันแค่นั้น
+* ตัวอย่าง เราจะตีกล่อง class=item ที่อยู่ใน class=container แต่จะตีกับแค่กล่องที่เป็นตัวลูกติดกันกับ container เท่านั้น
+![!\[alt text\](https://docs.mikelopster.dev/assets/images/intro-4-e5e1ffea6de8f29a1b74b3611beef9fa.png)](https://docs.mikelopster.dev/assets/images/intro-3-245f9742c9945bcb468516f231714259.png)
+
+````
+<head>
+    <style>
+        .container > .item {
+          border: 1px black solid;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        Container
+        <div class="item">
+            Item 
+            <div class="item">
+                Item1
+            </div>
+        </div>
+    </div>
+  </body>
+````
+
+Class แบบเพื่อนกัน (.item1 + .item2)
+* จะหยิบตัวที่ติดกันออกมา โดยเงื่อนไขคือ ตัวแรกจะต้องมาก่อนตัวที่สองเสมอ
+* ตัวอย่าง มี item 2 อัน โดยเราจะระบายสีให้กับ class=item1 ที่ติดกับ class=item2 เท่านั้น
+![alt text](https://docs.mikelopster.dev/assets/images/intro-4-e5e1ffea6de8f29a1b74b3611beef9fa.png)
+
+````
+<head>
+        <style>
+            .item1 + .item2 {
+                background-color: beige;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="item1">Item 1 </div>
+        <div class="item2">Item 2 (ติด)</div>
+        <div class="item2">Item 2 (ไม่ติด)</div>
+    </body>
+````
+
+
+
+# css เพิ่มเติม
+
 1. import font จาก [google font](https://fonts.google.com/)
 
 ![alt text](img/font.png)
