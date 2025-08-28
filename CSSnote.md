@@ -272,39 +272,417 @@ margin: 10px   5px;
 | **Multi-Column** | `column-count`, `column-gap`                       | แบ่งคอลัมน์อัตโนมัติในเนื้อหา            | เหมาะกับบทความ/ข้อความยาว            | ควบคุมขนาดและเนื้อหายากกว่าตาราง        |
 
 # Pseudo-class และ Pseudo-element
-**Pseudo-class** ใช้ในการเลือกองค์ประกอบตามสถานะต่างๆ เช่น เมื่อผู้ใช้โต้ตอบกับองค์ประกอบ (คลิก, วางเมาส์, เป็นต้น)
+### Pseudo-class ใช้ในการเลือกองค์ประกอบตามสถานะต่างๆ เช่น เมื่อผู้ใช้โต้ตอบกับองค์ประกอบ (คลิก, วางเมาส์, เป็นต้น)
 * :hover ใช้สาหรับกำหนดสไตล์เมื่อผู้ใช้เอาเมาส์ไปวางไว้บนองค์ประกอบ
 * :active คือการ Selector เพิ่ม style ไปยังตัวที่กำลังคลิกอยู่
 * :focus ใช้สาหรับกำหนดสไตล์เมื่อองค์ประกอบได้รับการโฟกัส (เช่น เมื่อคลิกที่กล่องข้อความ)
 * :nth-child(): ใช้เพื่อเลือกองค์ประกอบที่เป็นลูกของพาเรนต์ในตาแหน่งที่ระบุ
 
-**Pseudo-element** (::before, ::after) ใช้ในการเพิ่มเนื้อหาหรือสไตล์ที่ไม่อยู่ใน HTML แต่สามารถเพิ่มได้ใน CSS
+ ```html
+    <input type="text">
+    <button class="button">button</button>
+```
+ ```css
+    .button{
+            background-color: gray;
+            border: 0;
+            padding: 20px;
+        }
+
+        .button:hover{/*กด*/
+            background-color: blue;
+        }
+
+        .button:active{/*กด*/
+            background-color: orange;
+        }
+
+        .button:focus{/*cursor กดอยู่*/
+            background-color: red;
+        }
+
+        input:focus{
+             background-color: orange;
+        }
+```
+**result**
+
+![alt text](img/psudoclass.gif)
+
+* pseudo selector
+
+    เราสามารถใช้ class เดียวกันเพื่อเป็นอันหนึ่งอันเดียวกัน แต่ก็สามารถแต่งแยกกันได้
+```html
+<div class="container">
+    <div class="item">1</div> <!--:first-child-->
+    <div class="item">2</div> <!--:nth-child(2)-->
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div> <!--:last-child-->
+</div>
+```
+
+```css
+.container .item:first-child{
+            background-color: blue;
+        }
+        .container .item:nth-child(2){
+            background-color: brown;
+        }
+        .container .item:last-child{
+            background-color: orange;
+        }
+```
+**result**
+
+![alt text](img/psudoclass-selec.png)
+
+### Pseudo-element (::before, ::after) ใช้ในการเพิ่มเนื้อหาหรือสไตล์ที่ไม่อยู่ใน HTML แต่สามารถเพิ่มได้ใน CSS
 * ::first-letter CSS Selector เลือกไปยังตัวอักษรตัวแรกของตัวนั้
 * ::before ใช้ในการเพิ่มเนื้อหาก่อนเนื้อหาหลักขององค์ประกอบ
 * ::after ใช้ในการเพิ่มเนื้อหาหลังเนื้อหาหลักขององค์ประกอบ
+```html
+<html>
+    <head>
+        <style>
+            .text {
+                color: blue;
+            }
+
+            .text::first-letter {
+                font-size: 40px;
+            }
+
+            .text-new::before {
+                content: '?';
+            }
+
+            .text-new::after {
+                content: '?';
+            }
+        </style>
+    </head>
+    <body>
+        <div class="text">Testmike</div>
+        <div class="text-new">Mmike</div>
+    </body>
+</html>
+```
+**result**
+
+![alt text](img/psudoelement-selec.png)
+
 
 # Media Queries และ Responsive Design
-Media Queries (ใช้คาสั่ง @media) คือคุณสมบัติใน CSS ที่ช่วยให้สามารถกาหนดสไตล์ที่แตกต่างกันตามลักษณะของอุปกรณ์ที่กาลังแสดงผลเว็บไซต์
+Media Queries (ใช้คาสั่ง @media) คือคุณสมบัติใน CSS ที่ช่วยให้สามารถกาหนดสไตล์ที่แตกต่างกันตามลักษณะของอุปกรณ์ที่กำลังแสดงผลเว็บไซต์
+* [material.io](https://m3.material.io/foundations/layout/applying-layout/window-size-classes)
+* [tailwindcss](https://tailwindcss.com/docs/responsive-design)
+    * 640px  mobile
+    * 768px  tablet
+    * มากกว่า 768px destop(1024)  desingหลัก
 
 Responsive Design คือการออกแบบเว็บไซต์ที่สามารถปรับรูปแบบให้เหมาะสมกับขนาดของหน้าจออุปกรณ์ที่แตกต่างกัน
 
 ใช้ @media screen and (orientation: landscape) เพื่อปรับสไตล์เมื่อหน้าจออยู่ในโหมด landscape (แนวนอน) และใช้ @media screen and (orientation: portrait) สาหรับโหมด portrait (แนวตั้ง)
 
-### 1. Viewports (breakpoint) - media query
+## 1. Viewports (breakpoint) - media query
 Viewports คือสิ่งที่ใช้ใน responsive design เพื่อเป็นการกำหนดขอบเขตของการใช้ CSS ในแต่ละขนาดหน้าจอ ปกติแล้วจะมี 2 เคสคือ:
 * max-width: n px คือการกำหนดว่า จากหน้าจอขนาดไม่เกิน n pixel จะใช้ css ตัวนี้แทน
 * min-width: n px คือการกำหนดว่า จากหน้าจอขนาดไม่น้อยกว่า n pixel จะใช้ css ตัวนี้แทน
 
-### 2. Fluid Layouts (flex) and Flexible Grid Systems (grid)
+### breakpoint (@media screen)
+* ```(max-width: 768px)``` แปลว่าหน้าจอที่ใหญืที่สุดที่ยังทำ cssนั้น (background-color: blue;) อยู่
+
+```h
+/* Default styles that apply to all devices */
+   body {  background-color: lightblue;}
+```
+
+```css
+/* Styles that apply to screens narrower than 600px */
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightgreen;
+  }
+}
+```
+
+**result**
+![alt text](img/responsive.gif)
+
+## 2. Fluid Layouts (flex) and Flexible Grid Systems (grid)
 * Flex ใช้สำหรับแบ่ง column ซ้ายขวา และให้เรียง column ใหม่เป็น column เดียวตอนเล็กลง (ในกรณีที่จอเล็ก) = ใช้สำหรับ handle จำนวน column ตามขนาดหน้าจอ
 * Grid ใช้สำหรับแบ่ง row, column และให้เรียงเป็น row, column ใหม่ตามขนาดหน้าจอที่เล็กลง = ใช้สำหรับ handle พวก grid ที่ต้องการ handle ทั้ง column และ row ทั้ง grid ไปพร้อมๆกัน
 
-## CSS selector เพิ่มเติม
-Class ใน parent (.container .item)
+### flex 
+
+* 768++ ให้เรียงแนวนอน 
+* 768 ให้เรียงแนวตั้ง (max-width: 768px)
+* flex-direction คือ การเรียง flex แบบใหม่ โดย default ของ flex คือจะทำการเรียงเป็น row (จากซ้ายไปขวา) มาเรียงใหม่เป็นตามที่ต้องการได้ โดยเราจะมาเรียงใหม่เป็น column แทน (จากบนลงล่าง) แทน
+```html
+<div class="container">
+        <div class="item"> Item1 </div>
+        <div class="item"> Item2 </div>
+</div>
+```
+
+```css
+ .container{
+    display: flex;
+}
+
+.container .item{
+    padding: 10px;
+    flex: 1;
+}
+
+ @media screen and (max-width: 768px){
+    .container{
+        flex-direction: column;
+    }
+}
+```
+**result**
+![alt text](img/flex.gif)
+
+### grid
+* ถ้าเป็น desktop จะใช้ grid 3 columns
+* ถ้าหน้าจอขนาดเล็กกว่า 768px จะใช้เป็น grid 2 columns
+* ถ้าหน้าจอขนาดเล็กกว่า 640px จะใช้เป็น grid 1 column
+
+ใน Grid จะมีสิ่งที่เรียกว่า grid-template-columns ในการกำหนดจำนวน column ใน grid ได้ โดยสามารถกำหนด ratio ได้ในแต่ละ column
+```html
+<div class="grid-container">
+        <div class="item"> Item1 </div>
+        <div class="item"> Item2 </div>
+        <div class="item"> Item3 </div>
+        <div class="item"> Item4 </div>
+        <div class="item"> Item5 </div>
+        <div class="item"> Item6 </div>
+    </div>
+```
+```css
+        .grid-container{
+            display: grid;
+            /*แบบนี้จะมี 3 col ถ้า 1fr 1fr ก็จะมี 2 col*/
+            grid-template-columns: 1fr 1fr 1fr; 
+        }
+
+        .grid-container .item{
+            padding: 10px;
+            flex: 1;
+            background-color: aqua;
+        }
+
+        /*tablet style*/
+        @media screen and (max-width: 768px){
+            .grid-container{
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+
+        /*mobile style*/
+        @media screen and (max-width: 640px){
+            .grid-container{
+                grid-template-columns: 1fr; 
+            }
+        }
+```
+**result**
+![alt text](img/grid.gif)
+
+## 3. Navigation and menu
+* ฉบับ desktop จะโชว์เมนูแสดงทั้งหมดออกมาเป็นแนวนอน
+* ฉบับ mobile (ขนาดหน้าจอน้อยกว่า 768px) จะโชว์เมนูออกมาเป็นแนวตั้ง และ ให้โชว์เมนูเมื่อเอาเมาส์มาวางบนเมนู
+```html
+<html lang="en">
+<head>
+  <style>
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .desktop ul {
+      display: flex;
+    }
+    .desktop ul > li {
+      margin-right: 20px;
+    }
+    .mobile-menu,
+    .mobile {
+      display: none;
+    }
+    @media screen and (max-width: 768px) {
+      .desktop {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .mobile-menu:hover + .mobile {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact Us</li>
+    </ul>
+  </div>
+  <div class="mobile-menu">Menu</div>
+  <div class="mobile">
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact Us</li>
+    </ul>
+  </div>
+</body>
+</html>
+```
+**result**
+![alt text](img/navigation-menu.gif)
+
+## 4. images and media
+* มี tag <picture> และสามารถแบ่งภาพแต่ละขนาดหน้าจอได้โดยใช้ tag <source> ได้
+* ถ้าเป็น desktop เราจะใช้ภาพหนึ่ง
+* ถ้าเป็น mobile (ขนาดหน้าจอน้อยกว่า 768px) จะใช้ภาพอีกภาพหนึ่งแทน
+
+### image srcset
+```html
+<picture>
+    <source 
+        media="(max-width: 768px)" 
+        src="https://...."
+    >
+
+    <!--รูปหลัก-->
+    <img 
+        src="https://...."
+    >
+</picture>
+```
+**result**
+![alt text](img/image.gif)
+
+
+# CSS Transition / Transform / Animation
+## 1. CSS Transition
+คือ CSS ที่เพิ่ม transition (animation แบบค่อยๆเปลี่ยน) เข้าไปเพื่อให้การเปลี่ยนของ CSS จากค่าหนึ่งไปยังค่าหนึ่งดู smooth ขึ้น
+* ตัวอย่าง จะลองเพิ่ม button ที่มีสีน้ำเงิน แล้วเปลี่่ยนจากสีน้ำเงินเป็นสีน้ำเงินอ่อน (lightblue) แล้วลองเพิ่ม transition ให้ดู smooth ขึ้นตอนเอาเมาส์วางแล้วเปลี่ยนสี
+```html
+<html>
+    <head>
+        <style>
+            .button {
+              background-color: blue;
+              transition: background-color 0.3s ease;
+              border: 0;
+              padding: 10px;
+              color: white;
+            }
+
+            .button:hover {
+              background-color: lightblue;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="button">
+           ปุ่มทดสอบ
+        </button>
+    </body>
+</html>
+```
+** result **
+![transition](img/csstransition.gif)
+
+## 2. CSS Transform
+คือ CSS ที่ใช้สำหรับการเปลี่ยนตำแหน่งและการหมุน Element (DOM)
+```html
+<html lang="en">
+    <head>
+        <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+            transition: transform 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box:hover {
+            transform: rotate(45deg) scale(1.2);
+        }
+
+        .box:nth-child(2):hover {
+            transform: translateX(50px);
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </body>
+</html>
+```
+
+**result**
+![alt text](img/transfrorm.gif)
+
+## 3. Animation
+คือ CSS ที่สามารถใช้ทำควบคุม Animation ได้
+```html
+<html lang="en">
+    <head>
+        <style>
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: teal;
+            border-radius: 50%;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+            transform: translateX(0);
+            }
+            50% {
+            transform: translateX(200px);
+            }
+        }
+        </style>
+    </head>
+    <body>
+    <div class="circle"></div>
+    </body>
+</html>
+```
+**result**
+![alt text](img/animation.gif)
+
+# CSS selector มี 5 แบบ (1-2 ใช้บ่อย)
+
+## 1.Class ใน parent (.container .item) แม่-ลูก (เว้นวรรค)
 * เรามี div class = container อยู่ และ มีลูก (อยู่ใน div container) class = item และต้องการแต่ง item ใน container ให้มีตัวอักษรสีน้ำเงิน และ padding 10px<br>
 ![alt text](https://docs.mikelopster.dev/assets/images/intro-1-172aa31e01d2bf844b981c9bbac41d6f.png)<br>
 
-````
+````html
 <head>
     <style>
         .container .item {
@@ -324,12 +702,12 @@ Class ใน parent (.container .item)
   ````
 
 
-Class ติดกัน (.container.item)
+## 2. base class(ไม่เว้นวรรค) Class ติดกัน (.container.item)
 * ปกติ มักจะใช้กับกรณีอยากสร้าง base class แล้วเพิ่ม class style เพิ่มเติมไป
 * ตัวอย่าง สร้าง button ขึ้นมาเป็น base class และเพิ่ม active, warning, danger ให้แยกสีปุ่มออกจากกัน
 ![alt text](https://docs.mikelopster.dev/assets/images/intro-2-3e519af867675918aba854db73d91bf8.png)
 
-````
+````html
  <head>
     <style>
         .button {
@@ -357,12 +735,12 @@ Class ติดกัน (.container.item)
   </body>
 ````
 
-Class ใน parent แบบติดกัน (.container > .item)
+## 3.แม่-ลูก-หลาน ต้องการแต่งแค่ลูก (>) Class ใน parent แบบติดกัน (.container > .item)
 * CSS Selector ที่จะหยิบเฉพาะลูกแค่ level เดียวมา กรณีอยากให้ style มีผลกับลูกที่ติดกันแค่นั้น
 * ตัวอย่าง เราจะตีกล่อง class=item ที่อยู่ใน class=container แต่จะตีกับแค่กล่องที่เป็นตัวลูกติดกันกับ container เท่านั้น
 ![!\[alt text\](https://docs.mikelopster.dev/assets/images/intro-4-e5e1ffea6de8f29a1b74b3611beef9fa.png)](https://docs.mikelopster.dev/assets/images/intro-3-245f9742c9945bcb468516f231714259.png)
 
-````
+````html
 <head>
     <style>
         .container > .item {
@@ -383,12 +761,12 @@ Class ใน parent แบบติดกัน (.container > .item)
   </body>
 ````
 
-Class แบบเพื่อนกัน (.item1 + .item2)
+## 4. เพื่อนกัน (adjacent) Class แบบเพื่อนกัน (.item1 + .item2)
 * จะหยิบตัวที่ติดกันออกมา โดยเงื่อนไขคือ ตัวแรกจะต้องมาก่อนตัวที่สองเสมอ
 * ตัวอย่าง มี item 2 อัน โดยเราจะระบายสีให้กับ class=item1 ที่ติดกับ class=item2 เท่านั้น
 ![alt text](https://docs.mikelopster.dev/assets/images/intro-4-e5e1ffea6de8f29a1b74b3611beef9fa.png)
 
-````
+````html
 <head>
         <style>
             .item1 + .item2 {
@@ -402,6 +780,24 @@ Class แบบเพื่อนกัน (.item1 + .item2)
         <div class="item2">Item 2 (ไม่ติด)</div>
     </body>
 ````
+## 5. attribte selrctor แต่งตัวที่ att เหมือนกัน
+* ตัวอย่าง ทำการเพิิ่ม background สีแดง ใส่ input ที่มี attribute type = text (เพื่อแต่งทุกกล่องที่เป็น text) จะทำการ select ทั้ง 2 ตัวได้<br>
+![alt text](img/attselec.png)
+```html
+    <html>
+  <head>
+    <style>
+        input[type=text] {
+            background-color: red;
+        }
+    </style>
+  </head>
+  <body>
+        <input type='text' name='firstname'> <br>
+        <input type='text' name='lastname'>
+  </body>
+</html>
+```
 
 
 
